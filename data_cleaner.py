@@ -16,7 +16,13 @@ class DataCleaner():
         """
         processed_posts = []
         for i in range(len(instagram_data)):
-            text = instagram_data[i]["edge_media_to_caption"]["edges"][0]["node"]["text"]
+            print(f"i = {i}")
+            try:
+                text = instagram_data[i]["edge_media_to_caption"]["edges"][0]["node"]["text"]
+            except:
+                print("Aiii we have an error")
+                print(f"Length of list {len(instagram_data)}, current i={i}")
+                print(f"Current data = {instagram_data[i]}")
             text.replace("\n", "")
             processed_posts.append(text)
         
@@ -60,7 +66,7 @@ class DataCleaner():
         # TODO delete later
         print("test output")
 
-lil_test = DataCleaner()
-text = ["adah  AJKDHAdhajsdh and hello he stop a A akk a ,, ! :)", "Hello there!", "Anot ! Ajk na na nn kk", ""] 
-new_text = lil_test.remove_stuff(text)
-print(new_text)
+#lil_test = DataCleaner()
+#text = ["adah  AJKDHAdhajsdh and hello he stop a A akk a ,, ! :)", "Hello there!", "Anot ! Ajk na na nn kk", ""] 
+#new_text = lil_test.remove_stuff(text)
+#print(new_text)

@@ -4,6 +4,7 @@ from typing import Optional
 from urllib.parse import quote
 from decouple import config
 from scrapfly import ScrapeConfig, ScrapflyClient, ScrapeApiResponse
+import pprint
 
 class Scraper():
 
@@ -29,7 +30,7 @@ class Scraper():
         return data["data"]["user"]
 
 
-    def scrape_user_posts(user_id: str, session: ScrapflyClient, page_size=12, page_limit: Optional[int] = None):
+    def scrape_user_posts(self, user_id: str, session: ScrapflyClient, page_size=12, page_limit: Optional[int] = None):
         """scrape user's post data"""
         base_url = "https://www.instagram.com/graphql/query/?query_hash=e769aa130647d2354c40ea6a439bfc08&variables="
         variables = {
@@ -61,12 +62,12 @@ class Scraper():
         s_key = config('scrapfly_key', default="")
         
         result_user_posts = []
-        if __name__ == "__main__":
-            with ScrapflyClient(key=s_key, max_concurrency=2) as session:
-                result_user = self.scrape_user(self.instagram_username, session)
-                result_user_posts = list(self.scrape_user_posts(result_user["id"], session, page_limit=3))
-                print("done")
+        with ScrapflyClient(key=s_key, max_concurrency=2) as session:
+            result_user = self.scrape_user(self.instagram_username, session)
+            result_user_posts = list(self.scrape_user_posts(result_user["id"], session, page_limit=5))
+            print("done")
         
+        pprint.pprint(result_user_posts)
         return result_user_posts
     
     
