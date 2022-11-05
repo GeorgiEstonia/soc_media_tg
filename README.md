@@ -1,5 +1,5 @@
 ## What is this?
-This project is anAPI that allows you to generate 3 images that describe what you write on Instagram.
+This project is an API that allows you to generate 3 images that describe what you write on Instagram.
 
 ## How does it work?
 First, you call the API passing your Instagram handle as "message" parameter. 
