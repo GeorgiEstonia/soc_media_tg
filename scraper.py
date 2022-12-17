@@ -19,6 +19,7 @@ class Scraper():
 
     def scrape_user(self, username: str, session: ScrapflyClient):
         """scrape user's data"""
+        print(f"username: {username}")
         result = session.scrape(
             ScrapeConfig(
                 url=f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}",
